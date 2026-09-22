@@ -1,60 +1,71 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Todo from './components/Todo';
 import TodoForm from './components/TodoForm';
 import Search from './components/Search';
 import Filter from './components/Filter';
 
+const STORAGE_KEY = "todos";
+
+const defaultTodos = [
+  { id: 1,
+    text: "criar funcionalidade x no sistema",
+    category: "trabalho",
+    isCompleted: false,
+  },
+  { id: 2,
+    text: "estudar react",
+    category: "estudos",
+    isCompleted: false,
+  },
+  { id: 3,
+    text: "ir ao mercado",
+    category: "pessoal",
+    isCompleted: false,
+  },
+];
+
+function loadTodos() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : defaultTodos;
+  } catch {
+    return defaultTodos;
+  }
+}
+
 function App() {
-  const [todos, setTodos] = useState([
-
-    { id: 1, 
-      text: "criar funcionalidade x no sistema",
-      category: "trabalho", 
-      isCompleted: false,
-    },
-
-    { id: 2,
-      text: "estudar react",
-      category: "estudos", 
-      isCompleted: false,
-    },
-
-    { id: 3,
-      text: "ir ao mercado",
-      category: "pessoal", 
-      isCompleted: false,
-    },
-  ]);
+  const [todos, setTodos] = useState(loadTodos);
 
     const [search, setSearch] = useState("");
 
     const [filter, setFilter] = useState("all");
     const [sort, setSort] = useState("A-Z");
 
-    const addTodo = (text, category) => {
+    useEffect(() => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+    }, [todos]);
 
-      const newTodos = [...todos, {
-        id: Math.floor(Math.random() * 10000),
+    const addTodo = (text, category) => {
+      const newTodo = {
+        id: crypto.randomUUID(),
         text,
         category,
         isCompleted: false,
-      },
-    ];
-      setTodos( newTodos);
+      };
+      setTodos([...todos, newTodo]);
     };
 
     const removeTodo = (id) => {
-      const newTodos =  [...todos]
-      const filteredTodos = newTodos.filter((todo) => 
-        todo.id !== id ? todo : null);
-      setTodos(filteredTodos);
+      setTodos(todos.filter((todo) => todo.id !== id));
     }
 
     const completeTodo = (id) => {
-      const newTodos = [...todos];
-      newTodos.map((todo) => todo.id === id ? todo.isCompleted = !todo.isCompleted : todo);
-      setTodos(newTodos);
+      setTodos(
+        todos.map((todo) =>
+          todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+        )
+      );
     }
 
   return (

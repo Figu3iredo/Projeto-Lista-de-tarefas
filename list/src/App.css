@@ -1,102 +1,176 @@
-body{
-  font-family: Arial;
-  background-color: #050505;
-  padding: 30px;
-  color: #333;
-  background-image: url('./img/footer.png');
-  background-position: center;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: #1a3a6e;
+  padding: 48px 20px;
+  background: #1e3f77;
+  background-image: radial-gradient(circle at top, #0c74db 0%, #0d2a50 100%);
 }
 
 .App {
   max-width: 600px;
-  margin: 0 auto 300px;
-  background-color: #e7e6e6;
-  padding: 20px 30px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 32px 36px 36px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px rgba(15, 23, 42, 0.08);
 }
 
-h1{
+h1 {
   text-align: center;
+  margin-top: 0;
+  margin-bottom: 28px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0f172a;
+  letter-spacing: -0.02em;
 }
 
-h2{
+h2 {
   margin-bottom: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #144180;
 }
 
-p{
+p {
   margin: 10px 0;
 }
 
-input{
-  box-sizing: border-box;
-}
-
-button{
-  background-color: #333974;
+button {
+  background-color: #12336e;
   color: #fff;
   border: none;
-  padding: 5px 10px;
+  padding: 8px 16px;
   margin-right: 10px;
-  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
-  opacity: 0.8;
-  transition: 0.3s;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-button:hover{
-  opacity: 1;
+button:hover {
+  background-color: #334155;
 }
 
-.todo-list{
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #555;
+button:active {
+  background-color: #102b69;
 }
 
-.todo{
+.todo-list {
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+}
+
+.todo {
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  padding: 10px;
+  border: 1px solid #e2e8f0;
+  padding: 12px 16px;
   margin-bottom: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-
-.complete{
-  background-color: #038303;
+.todo:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
 }
 
-.remove{
-  background-color: #cf1d1d;
+.todo .content p {
+  margin: 3px 0;
+  font-size: 0.95rem;
 }
 
-.todo-form{
-  padding-bottom: 1.5rem;
+.todo .category {
+  display: inline-block;
+  color: #475569;
+  background-color: #f1f5f9;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 2px 8px;
+  border-radius: 999px;
 }
 
-input, select{
-  padding: 5px;
+.complete {
+  background-color: #15803d;
+}
+
+.complete:hover {
+  background-color: #166534;
+}
+
+.remove {
+  background-color: #f37a7a;
+  color: #f9f9fa;
+  margin-right: 0;
+}
+
+.remove:hover {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.todo-form {
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+input, select {
+  padding: 10px 12px;
   margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
   width: 100%;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #1e293b;
+  background-color: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.filter, search{
-  border-bottom: 1px solid #555;
+input::placeholder {
+  color: #94a3b8;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #1e293b;
+  box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.08);
+}
+
+.filter, .search {
+  border-bottom: 1px solid #e2e8f0;
   margin-bottom: 20px;
   padding-bottom: 20px;
-
 }
 
-.filter-options{
+.filter-options {
   display: flex;
   justify-content: space-between;
-  gap: 3rem;
+  gap: 2.5rem;
 }
 
-.filter-options div{
+.filter-options div {
   flex: 1 1 0;
+}
+
+.filter-options p {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #475569;
+  margin: 0 0 6px;
 }
